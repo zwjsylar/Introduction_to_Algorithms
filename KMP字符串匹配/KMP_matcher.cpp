@@ -4,11 +4,18 @@ KMP字符串匹配：
 	作用：在字符串T中匹配字符串P，并输出匹配位置
 		时间复杂度：O(n) + O(m) n为字符串T的长度 m为字符串P的长度
 		空间复杂度：O(m)
+
 KMP字符串预处理：
 	函数：void KMP_GetNext(const char *P, int *next)
 	作用：KMP字符串预处理，将字符串P预处理的结果储存在数组next中	
 		时间复杂度：O(m)
 		空间复杂度：O(m)
+
+Linux源码中的字符串匹配：
+	函数：	char * Strstr(register const char *s, register const char *wanted)
+	作用;	返回字符串s中以字符串wanted开头的字符串
+		时间复杂度：O(mn)
+		空间复杂度：O(n)
 ************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,7 +55,7 @@ void KMP_GetNext(const char *P, int *next)
 KMP字符串预处理：
 	函数：void KMP_Matcher(const char* T, const char *P)
 		T:		待匹配的字符串
-		P：		匹配的字符串
+		P：		需要匹配的字符串
 	返回值：	无
 	打印值：	打印出next数组；打印出字符串的匹配位置
 	时间复杂度：O(n) + O(m)
@@ -78,16 +85,38 @@ void KMP_Matcher(const char* T, const char *P)
 
 		if(q + 1== m) //由于数组下标的变化，q的值会比m小1
 		{
-			printf("Success.\nPattern occurs with shift: %d\n", i - m);
+			printf("Success.\nPattern occurs with shift: %d\n", i - m + 1);
 			q = next[q];
 		}
 	}
 }
 
+/**********************************************************************
+Linux源码中的字符串匹配：
+	函数：char * Strstr(register const char *s, register const char *wanted)
+		s:		待匹配的字符串
+		wanted：需要匹配的字符串
+	返回值：	返回字符串s中以字符串wanted开头的字符串
+	打印值：	无
+	时间复杂度：O(mn)
+	空间复杂度：O(n)
+************************************************************************/
+char * Strstr(register const char *s, register const char *wanted)
+{
+    register const size_t len = strlen(wanted);
+    if (len == 0) return (char *)s;
+    while (*s != *wanted || strncmp(s, wanted, len))
+		 if (*s++ == '\0')
+            return (char *)NULL;
+		 return (char *)s;
+}
+
 int main()
 {
-	char *A = "bacbababababca";
-	char *B = "ababababca";
+	char *A = "qweabcdaabcabewwe";
+	char *B = "abcdaabcab";
+	char *C = Strstr(A,B);
+	printf("%s\n",C);
 	KMP_Matcher(A, B);
 	system("pause");
 	return 0;
