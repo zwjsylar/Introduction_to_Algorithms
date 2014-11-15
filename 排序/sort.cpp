@@ -1,10 +1,65 @@
+/**********************************************************************
+快速排序：
+	函数：void QuickSort(int Array[], int low, int high)
+	作用：对数组Array排序
+		时间复杂度：O(nlgn)
+		空间复杂度：O(1)
+
+随机化快速排序：
+	函数：void RandomQuickSort(int Array[], int low, int high)
+	作用：对数组Array排序
+		时间复杂度：O(nlgn)
+		空间复杂度：O(1)
+
+插入排序：
+	函数：void InsertSort(int Array[], int low, int high)
+	作用：对数组Array排序
+		时间复杂度：O(n^2)
+		空间复杂度：O(1)
+
+冒泡排序：
+	函数：void BubbleSort(int Array[], int low, int high)
+	作用：对数组Array排序
+		时间复杂度：O(n^2)
+		空间复杂度：O(1)
+
+最大堆调整：
+	函数：void HeapAdjust(int Array[], int i, int nLength)
+	作用：对数组Array排序
+		时间复杂度：O(lgn)
+		空间复杂度：O(1)
+
+堆排序：
+	函数：void HeapSort(int Array[], int length)
+	作用：对数组Array排序
+		时间复杂度：O(nlgn)
+		空间复杂度：O(1)
+
+希尔排序：
+	函数：void ShellSort(int Array[], int length)
+	作用：对数组Array排序
+		时间复杂度：O(n^2)
+		空间复杂度：O(1)
+************************************************************************/
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 #define SWAP(a,b) {int temp = a; a = b; b = temp;}
 
 using namespace std;
 
+/**********************************************************************
+交换两个整形数据（引用实现）：
+	函数：void Swap( int &a, int &b)
+		a:	待交换的数据
+		b:	待交换的数据
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(1)
+	空间复杂度：O(1)
+************************************************************************/
 void Swap( int &a, int &b)
 {
     int temp = a;
@@ -14,6 +69,16 @@ void Swap( int &a, int &b)
     b = temp;
 }
 
+/**********************************************************************
+交换两个整形数据（指针实现）：
+	函数：void SWap( int &a, int &b)
+		a:	待交换的数据
+		b:	待交换的数据
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(1)
+	空间复杂度：O(1)
+************************************************************************/
 void SWap( int *a, int *b)
 {
     int temp = *a;
@@ -23,6 +88,17 @@ void SWap( int *a, int *b)
     *b = temp;
 }
 
+/**********************************************************************
+快速排序：
+	函数：void QuickSort(int Array[], int low, int high)
+		Array:	待排序的数组
+		low:	数组的起始位置
+		high:	数组的结束位置
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(nlgn)
+	空间复杂度：O(1)
+************************************************************************/
 void QuickSort(int Array[], int low, int high) //快速排序
 {
     if( low >= high)
@@ -54,6 +130,17 @@ void QuickSort(int Array[], int low, int high) //快速排序
 
 }
 
+/**********************************************************************
+随机化快速排序：
+	函数：void RandomQuickSort(int Array[], int low, int high)
+		Array:	待排序的数组
+		low:	数组的起始位置
+		high:	数组的结束位置
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(nlgn)
+	空间复杂度：O(1)
+************************************************************************/
 void RandomQuickSort(int Array[], int low, int high) //随机化快速排序
 {
     if( low >= high)
@@ -94,6 +181,17 @@ void RandomQuickSort(int Array[], int low, int high) //随机化快速排序
     RandomQuickSort(Array, last + 1, high);
 }
 
+/**********************************************************************
+插入排序：
+	函数：void InsertSort(int Array[], int low, int high)
+		Array:	待排序的数组
+		low:	数组的起始位置
+		high:	数组的结束位置
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(n^2)
+	空间复杂度：O(1)
+************************************************************************/
 void InsertSort(int Array[], int low, int high) //插入排序
 {
     int key;
@@ -116,6 +214,17 @@ void InsertSort(int Array[], int low, int high) //插入排序
     }
 }
 
+/**********************************************************************
+冒泡排序：
+	函数：void BubbleSort(int Array[], int low, int high)
+		Array:	待排序的数组
+		low:	数组的起始位置
+		high:	数组的结束位置
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(n^2)
+	空间复杂度：O(1)
+************************************************************************/
 void BubbleSort(int Array[], int low, int high) //冒泡排序
 {
     int i, j;
@@ -135,6 +244,17 @@ void BubbleSort(int Array[], int low, int high) //冒泡排序
         }
 }
 
+/**********************************************************************
+最大堆调整：
+	函数：void HeapAdjust(int Array[], int i, int nLength)
+		Array:		待排序的数组
+		i:			根节点在数组的序号
+		nlength:	数组的长度
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(lgn)
+	空间复杂度：O(1)
+************************************************************************/
 void HeapAdjust(int Array[], int i, int nLength) //最大堆堆调整
 {
     int nChild;
@@ -163,6 +283,16 @@ void HeapAdjust(int Array[], int i, int nLength) //最大堆堆调整
     }
 }
 
+/**********************************************************************
+堆排序：
+	函数：void HeapSort(int Array[], int length)
+		Array:	待排序的数组
+		length:	数组的长度
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(nlgn)
+	空间复杂度：O(1)
+************************************************************************/
 void HeapSort(int Array[], int length) //堆排序
 {
     int tmp;
@@ -186,6 +316,16 @@ void HeapSort(int Array[], int length) //堆排序
     }
 }
 
+/**********************************************************************
+希尔排序：
+	函数：void ShellSort(int Array[], int length)
+		Array:	待排序的数组
+		length:	数组的长度
+	返回值：	无
+	打印值：	无
+	时间复杂度：O(nlgn)
+	空间复杂度：O(1)
+************************************************************************/
 void ShellSort(int Array[], int length) //希尔排序
 {
     int d = length/2;
@@ -213,6 +353,7 @@ void ShellSort(int Array[], int length) //希尔排序
         d /= 2;
     }
 }
+
 int
 main()
 {
@@ -240,5 +381,6 @@ main()
     for( int i = 0; i < 10; i++)
         cout << TempArray[i] << " ";
 
+	system("pause");
     return 0;
 }
